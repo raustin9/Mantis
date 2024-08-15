@@ -1,0 +1,6 @@
+build/*
+!build/.keep
+
+compile_commands.json
+
+.cache
