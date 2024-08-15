@@ -1,4 +1,0 @@
-/home/raustin9/src/amphora/external/Mantis/build/CMakeFiles/mantis.dir
-/home/raustin9/src/amphora/external/Mantis/build/CMakeFiles/simple_server.dir
-/home/raustin9/src/amphora/external/Mantis/build/CMakeFiles/edit_cache.dir
-/home/raustin9/src/amphora/external/Mantis/build/CMakeFiles/rebuild_cache.dir
