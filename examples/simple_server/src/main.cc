@@ -1,9 +1,11 @@
-#include <iostream>
+#include "server/server.h"
 #include <mantis/mantis.h>
 
 int
 main(void) {
-    std::cout << "Hello Simple Server\n";
-    mantis::test_function();
+    mantis::Server()
+        .listen_on("0.0.0.0", 8080)
+        .run();
+
     return 0;
 }

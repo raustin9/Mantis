@@ -8,10 +8,12 @@ set(CMAKE_CXX_FLAGS "-Wall -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu
 
 file(GLOB MANTIS_SOURCES 
     "${PROJECT_SOURCE_DIR}/mantis/src/*.cc"
+    "${PROJECT_SOURCE_DIR}/mantis/src/server/*.cc"
 )
 
 file(GLOB MANTIS_HEADERS_PRIVATE 
-    "mantis/src/*.h"
+    "${PROJECT_SOURCE_DIR}/mantis/src/*.h"
+    "${PROJECT_SOURCE_DIR}/mantis/src/server/*.h"
 )
 
 # Build Dependencies
@@ -21,6 +23,13 @@ add_subdirectory(
 )
 set(TRANTOR_INCLUDE_DIR
     "${PROJECT_SOURCE_DIR}/external/trantor"
+)
+
+add_subdirectory(
+    "${PROJECT_SOURCE_DIR}/external/QLogger"
+)
+set(QLOGGER_INCLUDE_DIR
+    "${PROJECT_SOURCE_DIR}/external/QLogger/include"
 )
 
 
@@ -34,10 +43,12 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
     "${MANTIS_INCLUDE_DIR}"
     "${TRANTOR_INCLUDE_DIR}"
+    "${QLOGGER_INCLUDE_DIR}"
 )
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     trantor
+    qlogger
 )
 
 # Build examples

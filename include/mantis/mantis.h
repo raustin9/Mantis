@@ -1,7 +1,11 @@
+/*
+ * Mantis
+ * mantis.h
+ *
+ * Common include file for using the mantis project
+ *
+ */
+
 #pragma once
 
-namespace mantis {
-
-void test_function();
-
-} // mantis namespace
+#include "server/server.h"
