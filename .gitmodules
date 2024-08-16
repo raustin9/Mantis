@@ -1,3 +1,9 @@
 [submodule "external/QLogger"]
 	path = external/QLogger
 	url = git@github.com:raustin9/QLogger.git
+[submodule "cpp-netlib"]
+	path = cpp-netlib
+	url = https://github.com/cpp-netlib/cpp-netlib
+[submodule "external/cpp-netlib"]
+	path = external/cpp-netlib
+	url = https://github.com/cpp-netlib/cpp-netlib

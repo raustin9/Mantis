@@ -3,7 +3,7 @@
 
 int
 main(void) {
-    mantis::Server()
+    mantis::http::TcpServer()
         .listen_on("0.0.0.0", 8080)
         .run();
 

@@ -2,8 +2,10 @@
 
 namespace mantis {
 
+namespace http {
+
 /* @description Constructor for a server */
-Server::Server()
+TcpServer::TcpServer()
     : m_logger(new qlogger::Logger())
     , m_bind(MANTIS_SERVER_BIND_INIT)
     , m_port(MANTIS_SERVER_PORT_INIT)
@@ -13,7 +15,7 @@ Server::Server()
 }
 
 /* @description Destructor for server */
-Server::~Server() {
+TcpServer::~TcpServer() {
     // TODO: shutdown behavior for the server
 
     m_logger->info("Shutting down...");
@@ -23,7 +25,7 @@ Server::~Server() {
 /* @description Tell the server what address to bind to and on what port
  * @param num_workers The desired number of worker threads
  */
-Server& Server::num_thread_workers(i32 num_workers) {
+TcpServer& TcpServer::num_thread_workers(i32 num_workers) {
     m_num_worker_threads = num_workers;
     m_logger->info("Setting number of worker threads to |%d|", num_workers);
 
@@ -35,7 +37,7 @@ Server& Server::num_thread_workers(i32 num_workers) {
  * @param bind The address to bind to
  * @param port The port we want to listen on
  */
-Server& Server::listen_on(const std::string& bind, i32 port) {
+TcpServer& TcpServer::listen_on(const std::string& bind, i32 port) {
     m_bind = bind;
     m_port = port;
     m_logger->debug("Setting bind to %s", bind.c_str());
@@ -45,9 +47,10 @@ Server& Server::listen_on(const std::string& bind, i32 port) {
 }
 
 /* @description Run the server */
-Server& Server::run() {
+TcpServer& TcpServer::run() {
     m_logger->info("Listening on %s:%d", m_bind.c_str(), m_port);
     return *this;
 }
 
+} // http namespace
 } // mantis namespace

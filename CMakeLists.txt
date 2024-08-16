@@ -9,11 +9,15 @@ set(CMAKE_CXX_FLAGS "-Wall -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu
 file(GLOB MANTIS_SOURCES 
     "${PROJECT_SOURCE_DIR}/mantis/src/*.cc"
     "${PROJECT_SOURCE_DIR}/mantis/src/server/*.cc"
+    "${PROJECT_SOURCE_DIR}/mantis/src/platform/*.cc"
+    "${PROJECT_SOURCE_DIR}/mantis/src/common/*.cc"
 )
 
 file(GLOB MANTIS_HEADERS_PRIVATE 
     "${PROJECT_SOURCE_DIR}/mantis/src/*.h"
     "${PROJECT_SOURCE_DIR}/mantis/src/server/*.h"
+    "${PROJECT_SOURCE_DIR}/mantis/src/platform/*.h"
+    "${PROJECT_SOURCE_DIR}/mantis/src/common/*.h"
 )
 
 # Build Dependencies
