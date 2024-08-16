@@ -15,6 +15,7 @@ constexpr const char* MANTIS_SERVER_BIND_INIT = "__internal__mantis__bind__init_
 constexpr i32 MANTIS_SERVER_PORT_INIT = -1;
 constexpr i32 MANTIS_SERVER_NUM_WORKERS_INIT = -1;
 
+/* TCP Server to handle http connections */
 class TcpServer {
 public:
     TcpServer();
@@ -31,10 +32,12 @@ public:
     TcpServer& run();
 private:
     qlogger::Logger* m_logger;
-    std::string m_bind;       // Address to listen on
-    i32 m_port;               // Port to listen on
-    i32 m_num_worker_threads; // Number of worker threads to handle requests
-    
+    std::string m_bind;        // Address to listen on
+    i32 m_port;                // Port to listen on
+    i32 m_num_worker_threads;  // Number of worker threads to handle requests
+    platform::TcpSocket m_socket; // The socket to connect to
+
+    void _listen();
 };
 
 } // http namespace

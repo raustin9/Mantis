@@ -8,8 +8,8 @@ go-Build-All() {
     cmake --build build
 }
 
-go-Run-Simple() {
-    pexec build/simple_server
+go-run() {
+    build/simple_server
 }
 
 "go-$@"

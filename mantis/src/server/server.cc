@@ -1,4 +1,5 @@
 #include "server/server.h"
+#include "platform/platform.h"
 
 namespace mantis {
 
@@ -10,6 +11,7 @@ TcpServer::TcpServer()
     , m_bind(MANTIS_SERVER_BIND_INIT)
     , m_port(MANTIS_SERVER_PORT_INIT)
     , m_num_worker_threads(MANTIS_SERVER_NUM_WORKERS_INIT)
+    , m_socket(platform::TcpSocket())
 {
 
 }
@@ -48,8 +50,35 @@ TcpServer& TcpServer::listen_on(const std::string& bind, i32 port) {
 
 /* @description Run the server */
 TcpServer& TcpServer::run() {
+    m_logger->info("Beginning server startup");
+
+    if (m_port == MANTIS_SERVER_PORT_INIT) {
+        m_logger->warn("Port to listen on was not specified. Using 8080 instead.");
+        m_port = 8080;
+    }
+
+    if (m_bind == MANTIS_SERVER_BIND_INIT) {
+        m_logger->warn("Server bind not specified. Using 0.0.0.0 instead.");
+        m_bind = "0.0.0.0";
+    }
+
+    if (m_socket.bind(m_bind, m_port) < 0) {
+        m_logger->error("TcpServer: unable to bind to socket using address %s:%d", m_bind.c_str(), m_port);
+        return *this;
+    }
+    m_logger->debug("Server bound to socket successfully.");
+
+    if (m_socket.listen_on() < 0) {
+        m_logger->error("TcpServer cannot listen on socket.");
+        return *this;
+    }
     m_logger->info("Listening on %s:%d", m_bind.c_str(), m_port);
+
     return *this;
+}
+
+/* @description Listen on the socket we have bound */
+void TcpServer::_listen() {
 }
 
 } // http namespace
