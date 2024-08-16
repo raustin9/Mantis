@@ -1,5 +1,6 @@
 #include "mantis.h"
 #include <iostream>
+#include <trantor/net/Resolver.h>
 
 namespace mantis {
 

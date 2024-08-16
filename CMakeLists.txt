@@ -14,6 +14,16 @@ file(GLOB MANTIS_HEADERS_PRIVATE
     "mantis/src/*.h"
 )
 
+# Build Dependencies
+# TODO: build trantor. For now we can just link to the compiled library
+add_subdirectory(
+    "${PROJECT_SOURCE_DIR}/external/trantor"
+)
+set(TRANTOR_INCLUDE_DIR
+    "${PROJECT_SOURCE_DIR}/external/trantor"
+)
+
+
 # The include path to specify for building the library
 set(MANTIS_INCLUDE_DIR
     "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}"
@@ -23,6 +33,11 @@ add_library(${PROJECT_NAME} SHARED ${MANTIS_SOURCES} ${MANTIS_HEADERS})
 target_include_directories(${PROJECT_NAME}
     PUBLIC
     "${MANTIS_INCLUDE_DIR}"
+    "${TRANTOR_INCLUDE_DIR}"
+)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+    trantor
 )
 
 # Build examples
